@@ -1,0 +1,3 @@
+gui:
+  pager:
+    command: delta
