@@ -31,8 +31,7 @@ return {
     lazy = true,
   },
   {
-    "echasnovski/mini.animate",
-    version = "*",
+    "sphamba/smear-cursor.nvim",
     opts = {},
   },
   {
