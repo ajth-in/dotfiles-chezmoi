@@ -195,4 +195,11 @@ return {
     "nvim-tree/nvim-web-devicons",
     lazy = true,
   },
+  {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("tiny-inline-diagnostic").setup()
+    end,
+  },
 }

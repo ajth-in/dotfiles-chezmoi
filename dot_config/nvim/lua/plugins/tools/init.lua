@@ -103,6 +103,19 @@ return {
     opts = {},
   },
   {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-neotest/neotest-vitest",
+    },
+    config = function()
+      require("neotest").setup({
+        adapters = {
+          require("neotest-vitest"),
+        },
+      })
+    end,
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function()

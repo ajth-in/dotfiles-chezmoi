@@ -31,10 +31,6 @@ return {
     lazy = true,
   },
   {
-    "sphamba/smear-cursor.nvim",
-    opts = {},
-  },
-  {
     "RRethy/vim-illuminate",
     event = { "BufReadPost", "BufNewFile" },
     config = function()
