@@ -105,7 +105,7 @@ return {
   {
     "nvim-neotest/neotest",
     dependencies = {
-      "nvim-neotest/neotest-vitest",
+      "marilari88/neotest-vitest",
     },
     config = function()
       require("neotest").setup({
