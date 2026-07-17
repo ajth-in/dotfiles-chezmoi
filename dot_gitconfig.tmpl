@@ -1,9 +1,11 @@
 [init]
 	defaultBranch = main
 [user]
-	name = ajth-in
-	email = ajithpmuralidharan01@gmail.com
+	name = $GIT_AUTHOR_NAME
+	email = $GIT_AUTHOR_EMAIL
+{{- if eq .chezmoi.os "linux" }}
 	signingkey = AFD13119AEB6E606
+{{- end }}
 [commit]
 	gpgsign = true
 [push]
