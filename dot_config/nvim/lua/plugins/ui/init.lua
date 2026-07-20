@@ -1,80 +1,39 @@
 return {
   {
-    "goolord/alpha-nvim",
-    priority = 999,
-    lazy = false,
-    config = function()
-      local alpha = require("alpha")
-      local theta = require("alpha.themes.theta")
-
-      theta.header.val = {
-        "",
-        ".---.                           ",
-        "|   |                           ",
-        "'---'.--.           .           ",
-        ".---.|__|         .'|           ",
-        "|   |.--.     .| <  |           ",
-        "__        |   ||  |   .' |_ | | ",
-        ".:--.'.      |   ||  | .'     || | .'''-.   ",
-        "/ |   \\ |     |   ||  |'--.  .-'| |/.'''. \\   ",
-        "`\" __ | |     |   ||  |   |  |  |  /    | |   ",
-        ".'.''| |     |   ||__|   |  |  | |     | |   ",
-        "/ /   | |_ __.'   '       |  '.'| |     | |   ",
-        "\\ \\._,\\ '/|      '        |   / | '.    | '.  ",
-        "`--'  `\" |____.'         `'-'  '---'   '---'  ",
-      }
-
-      local function button(sc, txt, keybind)
-        return {
-          type = "button",
-          val = txt,
-          on_press = function()
-            local keys = vim.api.nvim_replace_termcodes(keybind, true, false, true)
-            vim.api.nvim_feedkeys(keys, "t", false)
-          end,
-          opts = {
-            position = "center",
-            shortcut = sc,
-            cursor = 3,
-            width = 38,
-            align_shortcut = "right",
-            hl = "AlphaButtons",
-            hl_shortcut = "AlphaShortcut",
-          },
-        }
-      end
-
-      theta.buttons.val = {
-        button("f", "  Find File", "<leader>ff"),
-        button("r", "  Recent Files", "<leader>fr"),
-        button("g", "  Live Grep", "<leader>fg"),
-        button("e", "  File Explorer", "<leader>e"),
-        button("q", "  Quit", "<cmd>qa<cr>"),
-      }
-
-      alpha.setup(theta.config)
-    end,
-  },
-  {
     "akinsho/bufferline.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       options = {
-        numbers = "ordinal",
+        numbers = "buffer_id",
+        diagnostics = "nvim_lsp",
+        diagnostics_indicator = function(count, level)
+          local icon = level:match("error") and " " or " "
+          return " " .. icon .. count
+        end,
+        offsets = {},
       },
     },
     config = function(_, opts)
       require("bufferline").setup(opts)
       vim.keymap.set("n", "<S-l>", "<Cmd>BufferLineCycleNext<CR>", { desc = "Next Buffer" })
       vim.keymap.set("n", "<S-h>", "<Cmd>BufferLineCyclePrev<CR>", { desc = "Prev Buffer" })
-      vim.keymap.set("n", "<leader>1", "<Cmd>BufferLineGoToBuffer 1<CR>", { desc = "Buffer 1" })
-      vim.keymap.set("n", "<leader>2", "<Cmd>BufferLineGoToBuffer 2<CR>", { desc = "Buffer 2" })
-      vim.keymap.set("n", "<leader>3", "<Cmd>BufferLineGoToBuffer 3<CR>", { desc = "Buffer 3" })
-      vim.keymap.set("n", "<leader>4", "<Cmd>BufferLineGoToBuffer 4<CR>", { desc = "Buffer 4" })
-      vim.keymap.set("n", "<leader>5", "<Cmd>BufferLineGoToBuffer 5<CR>", { desc = "Buffer 5" })
-      vim.keymap.set("n", "<leader>bd", "<Cmd>bd<CR>", { desc = "Close Buffer" })
-      vim.keymap.set("n", "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>", { desc = "Close Other Buffers" })
-      vim.keymap.set("n", "<leader>bD", "<Cmd>BufferLineCloseRight<CR><Cmd>BufferLineCloseLeft<CR>", { desc = "Close All Buffers" })
+      vim.keymap.set("n", "<leader>bc", "<cmd>bdelete<CR>", {
+        desc = "Close current buffer",
+      })
+      vim.keymap.set("n", "<leader>bo", "<cmd>BufferLineCloseOthers<CR>", {
+        desc = "Close other buffers",
+      })
+      vim.keymap.set("n", "<leader>bp", "<cmd>BufferLineTogglePin<CR>", {
+        desc = "Toggle buffer pin",
+      })
+      vim.keymap.set("n", "<leader>bg", function()
+        local id = vim.fn.input("Buffer ID: ")
+        if id ~= "" then
+          vim.cmd("BufferLineGoToBuffer " .. id)
+        end
+      end, {
+        desc = "Go to buffer by ID",
+      })
     end,
   },
   {
@@ -186,7 +145,8 @@ return {
     config = function()
       require("trouble").setup()
       vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics" })
-      vim.keymap.set("n", "<leader>xw", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Buffer Diagnostics" })
+      vim.keymap.set("n", "<leader>xw", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        { desc = "Buffer Diagnostics" })
       vim.keymap.set("n", "<leader>xr", "<cmd>Trouble lsp_references toggle<cr>", { desc = "References" })
       vim.keymap.set("n", "<leader>xq", "<cmd>Trouble qflist toggle<cr>", { desc = "Quickfix" })
     end,

@@ -23,8 +23,10 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
+    dependencies = { "saghen/blink.cmp" },
     config = function()
       vim.lsp.config("*", {
+        capabilities = require("blink.cmp").get_lsp_capabilities(),
         root_dir = function(bufnr, on_dir)
           local fname = vim.api.nvim_buf_get_name(bufnr)
           on_dir(vim.fs.root(bufnr, { ".git", "package.json", "pyproject.toml", ".hg" })
