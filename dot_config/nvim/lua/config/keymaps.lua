@@ -10,3 +10,15 @@ keymap.set("n", "<C-l>", "<C-w>l")
 
 
 keymap.set("i", "jk", "<Esc>")
+
+keymap.set("n", "<leader>cc", function()
+  local row = vim.api.nvim_win_get_cursor(0)[1] - 1
+  local diags = vim.diagnostic.get(0, { lnnum = row })
+  if #diags == 0 then
+    vim.notify("No diagnostic on this line", vim.log.levels.WARN)
+    return
+  end
+  local msg = diags[1].message
+  vim.fn.setreg("+", msg)
+  vim.notify("Copied: " .. msg:sub(1, 80) .. (#msg > 80 and "..." or ""), vim.log.levels.INFO)
+end, { desc = "Copy diagnostic under cursor to clipboard" })
