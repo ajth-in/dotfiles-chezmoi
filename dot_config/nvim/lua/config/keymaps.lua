@@ -18,7 +18,11 @@ keymap.set("n", "<leader>cc", function()
     vim.notify("No diagnostic on this line", vim.log.levels.WARN)
     return
   end
-  local msg = diags[1].message
+  local lines = {}
+  for _, d in ipairs(diags) do
+    table.insert(lines, d.message)
+  end
+  local msg = table.concat(lines, "\n---\n")
   vim.fn.setreg("+", msg)
-  vim.notify("Copied: " .. msg:sub(1, 80) .. (#msg > 80 and "..." or ""), vim.log.levels.INFO)
+  vim.notify("Copied " .. #diags .. " diagnostic(s) to clipboard", vim.log.levels.INFO)
 end, { desc = "Copy diagnostic under cursor to clipboard" })
