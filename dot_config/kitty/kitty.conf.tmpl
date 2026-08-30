@@ -1,0 +1,25 @@
+{{- $isMac := eq .chezmoi.os "darwin" }}
+
+font_family FiraCode Nerd Font Mono
+font_size 10.0
+
+active_border_color #44ffff
+single_window_margin_width 0
+
+enabled_layouts Tall, *
+
+map f1 new_window_with_cwd
+map f2 launch --cwd=current $EDITOR .
+
+tab_bar_style powerline
+tab_powerline_style slanted
+
+
+background_image {{ .chezmoi.homeDir }}/.config/kitty/wallpaper.jpg
+background_image_layout scaled
+background_tint_intensity 0.5
+
+{{ if $isMac }}
+macos_option_as_alt yes
+
+{{ end }}
