@@ -15,49 +15,49 @@ $line_break\
 $character
 """
 
-# Directory
 [directory]
 style = "bold cyan"
 truncation_length = 3
 truncate_to_repo = true
 read_only = " 🔒"
 
-# Git branch
 [git_branch]
 symbol = " "
 style = "bold purple"
 format = "[$symbol$branch]($style) "
 
-# Git status
 [git_status]
 style = "bold red"
 format = '([$all_status$ahead_behind]($style) )'
 
-# Node.js
+[custom.typescript]
+command = "echo TS"
+when = "test -f tsconfig.json"
+symbol = " "
+style = "bold blue"
+format = "[$symbol$output]($style) "
+
+
 [nodejs]
 symbol = " "
 style = "bold green"
 format = "[$symbol$version]($style) "
 
-# Python
 [python]
 symbol = " "
 style = "bold yellow"
 format = '[$symbol$version]($style) '
 
-# Rust
 [rust]
 symbol = " "
 style = "bold red"
 format = "[$symbol$version]($style) "
 
-# Golang
 [golang]
 symbol = " "
 style = "bold cyan"
 format = "[$symbol$version]($style) "
 
-# Docker
 [docker_context]
 symbol = " "
 style = "blue"
