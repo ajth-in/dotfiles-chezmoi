@@ -18,8 +18,9 @@ tab_powerline_style slanted
 background_image {{ .chezmoi.homeDir }}/.config/kitty/wallpaper.png
 background_image_layout scaled
 background_tint_intensity 0.5
+allow_remote_control socket-only
+map ctrl+shift+grave launch --type=overlay --cwd=current
 
 {{ if $isMac }}
 macos_option_as_alt yes
-
 {{ end }}
