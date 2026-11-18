@@ -4,8 +4,8 @@ vim.pack.add {
   'https://github.com/MunifTanjim/nui.nvim',
 }
 
-vim.keymap.set('n', '<leader>e', '<Cmd>Neotree toggle<CR>', {
-  desc = 'Toggle NeoTree',
+vim.keymap.set('n', '<leader>e', '<Cmd>Neotree toggle reveal<CR>', {
+  desc = 'Toggle NeoTree and reveal current file',
   silent = true,
 })
 
