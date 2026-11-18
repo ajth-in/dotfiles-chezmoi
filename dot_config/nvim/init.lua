@@ -5,49 +5,6 @@ require("pack-changed-auto-cmd")
 local gh = require("utils.gh").gh
 
 do
-	-- [[ Installing and Configuring Plugins ]]
-	--
-	-- To install a plugin simply call `vim.pack.add` with its git url.
-	-- This will download the default branch of the plugin, which will usually be `main` or `master`
-	-- You can also have more advanced specs, which we will talk about later.
-	--
-	-- For most plugins its not enough to install them, you also need to call their `.setup()` to start them.
-	--
-	-- Useful plugin to show you pending keybinds.
-	vim.pack.add({ gh("folke/which-key.nvim") })
-	require("which-key").setup({
-		-- Delay between pressing a key and opening which-key (milliseconds)
-		delay = 0,
-		icons = { mappings = vim.g.have_nerd_font },
-		-- Document existing key chains
-		spec = {
-			{ "<leader>s", group = "[S]earch", mode = { "n", "v" } },
-			{ "<leader>t", group = "[T]oggle" },
-			{ "<leader>h", group = "Git [H]unk", mode = { "n", "v" } }, -- Enable gitsigns recommended keymaps first
-			{ "gr", group = "LSP Actions", mode = { "n" } },
-		},
-	})
-
-	-- [[ Colorscheme ]]
-	-- You can easily change to a different colorscheme.
-	-- Change the name of the colorscheme plugin below, and then
-	-- change the command under that to load whatever the name of that colorscheme is.
-	--
-	-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-	vim.pack.add({
-		{ src = "https://github.com/catppuccin/nvim" },
-	})
-
-	require("catppuccin").setup({
-		flavour = "mocha",
-	})
-
-	vim.cmd.colorscheme("catppuccin")
-
-	-- Highlight todo, notes, etc in comments
-	vim.pack.add({ gh("folke/todo-comments.nvim") })
-	require("todo-comments").setup({ signs = false })
-
 	-- [[ mini.nvim ]]
 	--  A collection of various small independent plugins/modules
 	vim.pack.add({ gh("nvim-mini/mini.nvim") })
@@ -665,6 +622,9 @@ do
 	require("extern.plugins.git.gitsigns")
 	require("extern.plugins.git.lazy-git")
 	require("extern.plugins.terminal")
+	require("extern.plugins.which-key")
+	require("extern.plugins.colorscheme")
+	require("extern.plugins.todo-comments")
 	-- NOTE: You can add your own plugins, configuration, etc. in `lua/custom/plugins/*.lua`.
 	--
 	-- For independent modules, uncomment the convenience loader:
