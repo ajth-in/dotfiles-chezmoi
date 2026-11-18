@@ -23,5 +23,6 @@ do
 	require("extern.plugins.formatting.formatters")
 	require("extern.plugins.formatting.conform")
 	require("extern.plugins.autocomplete")
+	require("extern.plugins.autopairs")
 	require("extern.plugins.treesitter")
 end
