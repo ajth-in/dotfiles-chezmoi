@@ -661,7 +661,10 @@ do
 	require("extern.plugins.neo-tree")
 	require("extern.plugins.alpha")
 	require("extern.plugins.guess-indent")
-	require("extern.plugins.git")
+	require("extern.plugins.snacks")
+	require("extern.plugins.git.gitsigns")
+	require("extern.plugins.git.lazy-git")
+	require("extern.plugins.terminal")
 	-- NOTE: You can add your own plugins, configuration, etc. in `lua/custom/plugins/*.lua`.
 	--
 	-- For independent modules, uncomment the convenience loader:

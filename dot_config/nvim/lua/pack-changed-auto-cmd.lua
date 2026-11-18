@@ -1,4 +1,4 @@
-local run_build = require("utils.run_build").run_build
+local run_build = require("utils.build").run_build
 
 vim.api.nvim_create_autocmd("PackChanged", {
 	callback = function(ev)

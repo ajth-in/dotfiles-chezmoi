@@ -3,6 +3,7 @@ local gh = require("utils.gh").gh
 vim.pack.add({ gh("lewis6991/gitsigns.nvim") })
 local gitsigns = require("gitsigns")
 gitsigns.setup({
+	current_line_blame = true,
 	signs = {
 		add = { text = "+" }, ---@diagnostic disable-line: missing-fields
 		change = { text = "~" }, ---@diagnostic disable-line: missing-fields
@@ -72,11 +73,6 @@ gitsigns.setup({
 			gitsigns.toggle_word_diff,
 			{ desc = "[T]oggle git intra-line [w]ord diff", buf = bufnr }
 		)
-		vim.keymap.set(
-			{ "o", "x" },
-			"ih",
-			gitsigns.select_hunk,
-			{ desc = "text object [i]nside [h]unk", buf = bufnr }
-		)
+		vim.keymap.set({ "o", "x" }, "ih", gitsigns.select_hunk, { desc = "text object [i]nside [h]unk", buf = bufnr })
 	end,
 })
