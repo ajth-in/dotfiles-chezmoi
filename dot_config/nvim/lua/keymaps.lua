@@ -9,7 +9,7 @@ do
 		update_in_insert = false,
 		severity_sort = true,
 		float = { border = "rounded", source = "if_many" },
-		underline = { severity = { min = vim.diagnostic.severity.WARN } },
+		underline = true,
 
 		virtual_text = true, -- Text shows up at the end of the line
 		virtual_lines = false, -- Text shows up underneath the line, with virtual lines

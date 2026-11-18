@@ -238,6 +238,7 @@ do
 	require("extern.plugins.lsp.keymaps")
 	require("extern.plugins.lsp.servers")
 	require("extern.plugins.lsp.mason")
+	require("extern.plugins.lint")
 	-- NOTE: You can add your own plugins, configuration, etc. in `lua/custom/plugins/*.lua`.
 	--
 	-- For independent modules, uncomment the convenience loader:

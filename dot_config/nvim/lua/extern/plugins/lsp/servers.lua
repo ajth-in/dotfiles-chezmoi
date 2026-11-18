@@ -2,6 +2,15 @@ local gh = require("utils.gh").gh
 
 local servers = {
 
+	vtsls = {}, -- TypeScript/JavaScript (also covers Node)
+	astro = {},
+	cssls = {},
+	emmet_language_server = {},
+	yamlls = {},
+	jsonls = {},
+	oxlint = {},
+	eslint = {},
+
 	stylua = {},
 	lua_ls = {
 		on_init = function(client)
