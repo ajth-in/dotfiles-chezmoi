@@ -2,12 +2,9 @@ local gh = require("utils.gh").gh
 local formatters_by_ft = require("extern.plugins.formatting.formatters")
 
 vim.pack.add({ gh("stevearc/conform.nvim") })
+
 require("conform").setup({
 	notify_on_error = false,
-	format_on_save = {
-		timeout_ms = 500,
-		lsp_format = "fallback",
-	},
 	default_format_opts = {
 		lsp_format = "fallback",
 	},
