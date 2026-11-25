@@ -6,6 +6,8 @@ local parsers =
 	{ "bash", "c", "diff", "html", "lua", "luadoc", "markdown", "markdown_inline", "query", "vim", "vimdoc" }
 require("nvim-treesitter").install(parsers)
 
+vim.treesitter.language.register("markdown", { "mdx", "markdown.mdx" })
+
 local function treesitter_try_attach(buf, language)
 	if not vim.api.nvim_buf_is_valid(buf) then
 		return

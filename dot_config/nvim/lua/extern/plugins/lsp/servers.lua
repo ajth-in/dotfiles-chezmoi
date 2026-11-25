@@ -4,6 +4,12 @@ local servers = {
 
 	vtsls = {}, -- TypeScript/JavaScript (also covers Node)
 	astro = {},
+	mdx_analyzer = {
+		filetypes = { "mdx", "markdown.mdx" },
+		get_language_id = function(_, _)
+			return "mdx"
+		end,
+	},
 	cssls = {},
 	emmet_language_server = {},
 	yamlls = {},
