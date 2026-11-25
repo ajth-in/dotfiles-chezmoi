@@ -1,5 +1,29 @@
 local gh = require("utils.gh").gh
 
+local function mdx_typescript_sdk(root_dir)
+	local project_sdk = require("lspconfig.util").get_typescript_server_path(root_dir)
+	if project_sdk ~= "" then
+		return project_sdk
+	end
+
+	local bundled = vim.fn.glob(
+		vim.fs.joinpath(
+			vim.fn.stdpath("data"),
+			"mason",
+			"packages",
+			"vtsls",
+			"**",
+			"typescript",
+			"lib",
+			"typescript.js"
+		),
+		false,
+		true
+	)[1]
+
+	return bundled and vim.fs.dirname(bundled) or nil
+end
+
 local servers = {
 
 	vtsls = {}, -- TypeScript/JavaScript (also covers Node)
@@ -8,6 +32,12 @@ local servers = {
 		filetypes = { "mdx", "markdown.mdx" },
 		get_language_id = function(_, _)
 			return "mdx"
+		end,
+		before_init = function(_, config)
+			local tsdk = mdx_typescript_sdk(config.root_dir)
+			if tsdk then
+				config.init_options.typescript.tsdk = tsdk
+			end
 		end,
 	},
 	cssls = {},
